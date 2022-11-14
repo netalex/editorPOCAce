@@ -1,0 +1,893 @@
+
+{
+	"messages": {
+		"HEADER": {
+			"cardinality": "",
+			"name": "SHARED HEADER",
+			"description": "Hader shared among all App11 messages",
+			"documentation": "",
+			"sets": [
+				{
+					"setId": "*HEADER",
+					"cardinality": "M",
+					"name": "",
+					"example": "",
+					"description": "",
+					"documentation": "",
+					"fields": [
+					]
+				}
+			]
+		},
+		"SUBDANGER": {
+			"cardinality": "",
+			"name": "SUBMARINE DANGER AREA NOTICE",
+			"description": "SUBMARINE DANGER AREA NOTICE",
+			"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/1_Messages\/SUBDANGER%205.0.html",
+			"sets": [
+				{
+					"setId": "*HEADER",
+					"cardinality": "M",
+					"name": "",
+					"example": "",
+					"description": "",
+					"documentation": "",
+					"fields": [
+					]
+				},
+				{
+					"setId": "REF",
+					"cardinality": "O",
+					"name": "REFERENCE",
+					"example": "REF\/A\/BARNSTORM\/-\/SHAPE\/20060810T032518Z\/AIR 051\/NOTAL\/LGQ\/\/\nREF\/B\/TYPE:LTR\/FUTURE USE OF MTFS\/SACLANT\/150830ZJAN2003\/-\/-\/FN:4503B\n\/\/",
+					"description": "Specifies identifying details regarding a document, image or other information exchange media that is applicable to the content of this message.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/REF%205.0.html#RPTBKMKREF50",
+					"fields": [
+						{
+							"name": "SERIAL LETTER",
+							"cardinality": "M",
+							"description": "Enter the alphabetic character sequentially assigned by the message drafter",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 1,
+									"type": "pattern",
+									"value": "[A-Z]"
+								}
+							]
+						},
+						{
+							"name": "COMMUNICATIONS TYPE",
+							"cardinality": "M",
+							"description": "Specifies the message identifier or the type of communication",
+							"ctrls": [
+								{
+									"minLength": 3,
+									"maxLength": 30,
+									"type": "pattern",
+									"value": "[-\\.,\\(\\)\\? A-Z0-9]{3,30}"
+								},
+								{
+									"minLength": 3,
+									"maxLength": 30,
+									"type": "list",
+									"value": "\nCON\nDOC\nEML\nLTR\nMSG\nTEL\nVTC"
+								}
+							]
+						},
+						{
+							"name": "TITLE OF DOCUMENT",
+							"cardinality": "C",
+							"description": "Enter the title of the reference",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 54,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,54}"
+								}
+							]
+						},
+						{
+							"name": "ORIGINATOR",
+							"cardinality": "M",
+							"description": "Enter the originator of the message, letter, or document referenced",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 30,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,30}"
+								}
+							]
+						},
+						{
+							"name": "DATE AND OR TIME OF REFERENCE",
+							"cardinality": "M",
+							"description": "Specifies the date and\/or time used to identify the reference",
+							"ctrls": [
+								{
+									"minLength": 7,
+									"maxLength": 16,
+									"type": "shared",
+									"value": "DTG"
+								},
+								{
+									"minLength": 7,
+									"maxLength": 16,
+									"type": "date",
+									"value": "DDMMMYYYY"
+								},
+								{
+									"minLength": 7,
+									"maxLength": 16,
+									"type": "list",
+									"value": "\nJAN\nFEB\nMAR\nMAY\nJUN\nJUL\nAUG\nSEP\nOCT\nNOV\nDEC"
+								},
+								{
+									"minLength": 7,
+									"maxLength": 16,
+									"type": "datatype",
+									"value": " ISODATETIME"
+								}
+							]
+						},
+						{
+							"name": "REFERENCE SERIAL NUMBER",
+							"cardinality": "O",
+							"description": "Enter the message serial number or document serial numbe",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 30,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?!@#$%\\^&\\*=_\\+\\[\\]\\{\\}\\\\\"';<>~\\|A-Z0-9]{1,30}"
+								}
+							]
+						},
+						{
+							"name": "SPECIAL NOTATION",
+							"cardinality": "O",
+							"description": "Enter the special notation which applies to the referenced message",
+							"ctrls": [
+								{
+									"minLength": 5,
+									"maxLength": 5,
+									"type": "list",
+									"value": "\nPASEP\nNOTAL"
+								}
+							]
+						},
+						{
+							"name": "SIC OR FILE NUMBER",
+							"repeatible": true,
+							"cardinality": "O",
+							"description": "Provides further identifying details of the reference, repeating as necessary",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 10,
+									"type": "pattern",
+									"value": "[A-Z0-9]{3,3}"
+								},
+								{
+									"minLength": 1,
+									"maxLength": 10,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?!@#$%\\^&\\*=_\\+\\[\\]\\{\\}\\\\\"';<>~\\|A-Z0-9]{1,10}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "GEODATUM",
+					"cardinality": "M",
+					"name": "GEODETIC DATUM",
+					"example": "GEODATUM\/EUS\/\/\nGEODATUM\/WGE\/\/\nGEODATUM\/WGE\/BNG\/\/",
+					"description": "Provides geodetic datum reference for geographic locations in the message.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/GEODATUM%205.0.html#RPTBKMKGEODATUM50",
+					"fields": [
+						{
+							"name": "GEODETIC DATUM",
+							"cardinality": "M",
+							"description": "",
+							"ctrls": [
+								{
+									"minLength": 3,
+									"maxLength": 6,
+									"type": "domain",
+									"value": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/3_FFIRN\/1195%205.0.html#RPTBKMK1195\/150"
+								}
+							]
+						},
+						{
+							"name": "NATIONAL GRID SYSTEM COORDINATES",
+							"cardinality": "O",
+							"description": "",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 20,
+									"type": "pattern",
+									"value": "[-\\.A-Z0-9a-z]{1,20}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "PLACEDEF",
+					"cardinality": "O",
+					"name": "PLACE DEFINITION",
+					"example": "PLACEDEF\/TOP HAT\/4520.3500N-02126.1500E\/RENDEZVOUS POINT\/\/",
+					"description": "\t\nProvides the geographical location of a place. To be used if place names are used in this message.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/PLACEDEF%205.0.html#RPTBKMKPLACEDEF50",
+					"fields": [
+						{
+							"name": "PLACE NAME",
+							"cardinality": "M",
+							"description": "",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 54,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?!@#$%\\^&\\*=_\\+\\[\\]\\{\\}\\\\\"';<>~\\|A-Z0-9]{1,54}"
+								}
+							]
+						},
+						{
+							"name": "PLACE",
+							"cardinality": "M",
+							"description": "",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 22,
+									"type": "shared",
+									"value": "LATLONG",
+									"note": "Other PLACE types currently not supported"
+								}
+							]
+						},
+						{
+							"name": "PLACE FUNCTION",
+							"cardinality": "O",
+							"description": "",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 60,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,60}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "*HAZARDINFO",
+					"repeatible": true,
+					"cardinality": "M",
+					"name": "HAZARD INFO",
+					"example": "",
+					"description": "This segment details the nature and location of the hazard",
+					"documentation": "",
+					"fields": [
+					]
+				}
+			]
+		}
+	},
+	"subBlocks": {
+		"HEADER": {
+			"subBlock": true,
+			"cardinality": "",
+			"name": "<block>",
+			"description": "",
+			"documentation": "",
+			"sets": [
+				{
+					"setId": "EXER",
+					"cardinality": "O",
+					"name": "EXERCISE IDENTIFICATION",
+					"example": "EXER\/CMX 95\/DISTAFF\/\/\nEXER\/DISPLAY DETERMINATION\/NICK:COBRA GOLD\/\/",
+					"description": "Provides the Exercise name. Identifies the Exercise the message pertains to. Not to be used in conjunction with set OPER.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/EXER%205.0.html",
+					"fields": [
+						{
+							"name": "EXERCISE NICKNAME",
+							"cardinality": "M",
+							"description": "Enter the code name or nickname of the exercise to which the message pertains",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 56,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,56}"
+								}
+							]
+						},
+						{
+							"name": "EXERCISE IDENTIFIER",
+							"cardinality": "O",
+							"description": "Provides additional information for the conduct of the exercise",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 16,
+									"type": "pattern",
+									"value": "[-\\.,\\(\\)\\? A-Z0-9]{3,30}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "OPER",
+					"cardinality": "O",
+					"name": "OPERATION CODEWORD",
+					"example": "OPER\/DENY FLIGHT\/\/\nOPER\/DENY FLIGHT\/SACEUR 106\/PAPER WASTE\/ORANGE\/\/\nOPER\/PROVIDE VALUE\/STRIKEFORSOUTH 202\/-\/LOW COST\/\/",
+					"description": "Provides the Operation codeword. Identifies the Operation the message pertains to. Not to be used in conjunction with set EXER",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/OPER%205.0.html#RPTBKMKOPER50",
+					"fields": [
+						{
+							"name": "OPERATION CODEWORD",
+							"cardinality": "M",
+							"description": "Enter the assigned operation name or nickname as established by the appropriate authority",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 32,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,32}"
+								}
+							]
+						},
+						{
+							"name": "PLAN ORIGINATOR AND NUMBER",
+							"cardinality": "O",
+							"description": "Enter the operation plan originator and numbe",
+							"ctrls": [
+								{
+									"minLength": 5,
+									"maxLength": 36,
+									"type": "custom",
+									"value": " \t\n[- \\.,\\(\\)\\?A-Z0-9]{3,20}\n[ ]{1,1}\n[-\\.,\\(\\)\\?A-Z0-9]{1,15}"
+								}
+							]
+						},
+						{
+							"name": "OPTION NICKNAME",
+							"cardinality": "O",
+							"description": "Enter the nickname of the primary option within the operation plan",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 23,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,23}"
+								}
+							]
+						},
+						{
+							"name": "SECONDARY OPTION NICKNAME",
+							"cardinality": "O",
+							"description": "Enter the nickname of the secondary option within the operation plan",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 23,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,23}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "MSGID",
+					"cardinality": "M",
+					"name": "MESSAGE IDENTIFIER",
+					"example": "MSGID\/OPGEN\/APP-11(D)\/1\/MARCOM\/02\/DEC\/-\/-\/NATO\/UNCLASSIFIED\/\/\nMSGID\/MEDSITREP\/APP-11(D)\/1\/LIVE WELLS\/-\/20150630T103030Z\/UPD\/1\/GBR\n\/OTH:PROTECT\/MEDICAL\/\/",
+					"description": "Specifies the message identifier, message originator and other message identifying details.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/MSGID%205.0.html#RPTBKMKMSGID50",
+					"fields": [
+						{
+							"name": "MESSAGE TEXT FORMAT IDENTIFIER",
+							"cardinality": "M",
+							"description": "Enter the Message Text Format identifier",
+							"ctrls": [
+								{
+									"minLength": 3,
+									"maxLength": 30,
+									"type": "pattern",
+									"value": "[-\\.,\\(\\)\\? A-Z0-9]{3,30}"
+								}
+							]
+						},
+						{
+							"name": "STANDARD",
+							"cardinality": "M",
+							"description": "Enter the publication that includes the formatted message specification",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 20,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,20}"
+								}
+							]
+						},
+						{
+							"name": "VERSION",
+							"cardinality": "M",
+							"description": "Enter the change state of the publication that includes the formatted message specification",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 20,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,20}"
+								}
+							]
+						},
+						{
+							"name": "ORIGINATOR",
+							"cardinality": "M",
+							"description": "Enter the message originator (normally in the short or standard abbreviated form)",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 30,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,30}"
+								}
+							]
+						},
+						{
+							"name": "MESSAGE SERIAL NUMBER",
+							"cardinality": "O",
+							"description": "Enter the message serial number (numbering will be according to the instructions of the HQs or formation concerned)",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 7,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,30}"
+								}
+							]
+						},
+						{
+							"name": "REFERENCE TIME OF PUBLICATION",
+							"cardinality": "M",
+							"description": "Provides the month or reference time of publication",
+							"ctrls": [
+								{
+									"minLength": 3,
+									"maxLength": 16,
+									"type": "list",
+									"value": "JAN,FEB,MAR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC"
+								},
+								{
+									"minLength": 3,
+									"maxLength": 16,
+									"type": "datatype",
+									"value": " ISODATETIME"
+								}
+							]
+						},
+						{
+							"name": "QUALIFIER",
+							"cardinality": "O",
+							"description": "Enter the code which caveats the message status",
+							"ctrls": [
+								{
+									"minLength": 3,
+									"maxLength": 3,
+									"type": "list",
+									"value": "\nAMP\nBLK\nCHG\nDEV\nFIN\nFUP\nINI\nNEW\nPER\nREQ\nUPD"
+								},
+								{
+									"minLength": 3,
+									"maxLength": 3,
+									"type": "fixed",
+									"value": "-"
+								}
+							]
+						},
+						{
+							"name": "SERIAL NUMBER OF QUALIFIER",
+							"cardinality": "O",
+							"description": "Enter the qualifier serial number (serially starting with 1 for first qualifier to any message)",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 3,
+									"type": "int",
+									"value": "1,999"
+								},
+								{
+									"minLength": 1,
+									"maxLength": 3,
+									"type": "fixed",
+									"value": "-"
+								}
+							]
+						},
+						{
+							"name": "MESSAGE SECURITY POLICY",
+							"cardinality": "M",
+							"description": "Enter the security policy that applies to the information contained in the message",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 50,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,50}"
+								},
+								{
+									"minLength": 1,
+									"maxLength": 50,
+									"type": "list",
+									"value": "NATO UNCLASSIFIED\nUNCLASSIFIED\nNATO RESTRICTED\nRESTRICTED\nNATO CONFIDENTIAL\nCONFIDENTIAL\nNATO SECRET\nSECRET\nCOSMIC TOP SECRET\nTOP SECRET\nOTHER CLASSIFICATION\nNATO UNCLASSIFIED\/PFP RELEASABLE\nNATO RESTRICTED\/PFP RELEASABLE\nNATO CONFIDENTIAL\/PFP RELEASABLE\nNATO SECRET\/PFP RELEASABLE"
+								}
+							]
+						},
+						{
+							"name": "MESSAGE CLASSIFICATION",
+							"cardinality": "M",
+							"description": "Provides the security classification of the message",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 50,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,50}"
+								},
+								{
+									"minLength": 1,
+									"maxLength": 50,
+									"type": "list",
+									"value": "UNCLASSIFIED\nRESTRICTED\nCONFIDENTIAL\nSECRET\nTOP SECRET"
+								},
+								{
+									"minLength": 1,
+									"maxLength": 50,
+									"type": "pattern",
+									"value": "'OTH:'[- \\.,\\(\\)\\?A-Z0-9]{1,50}"
+								}
+							]
+						},
+						{
+							"name": "MESSAGE SECURITY CATEGORY",
+							"cardinality": "O",
+							"description": "Enter the security category that applies to the information contained in the message",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 50,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,50}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		"HAZARDINFO": {
+			"subBlock": true,
+			"cardinality": "",
+			"name": "<block>",
+			"description": "",
+			"documentation": "",
+			"sets": [
+				{
+					"setId": "GENTEXT",
+					"cardinality": "M",
+					"name": "HAZARD TYPE",
+					"example": "GENTEXT\/COMMANDERS ASSESSMENT\/HERE YOU MAY ADD ANY COMMENTS IN FREE\nTEXT OF AN UNLIMITED NUMBER OF CHARACTERS THAT IS REQUIRED BY THE\nMESSAGE\/\/",
+					"description": "\t\nProvides the hazard type details in free text.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/GENTEXT%205.0.html#RPTBKMKGENTEXT50",
+					"fields": [
+						{
+							"name": "TEXT INDICATOR",
+							"cardinality": "M",
+							"description": "Enter the replacement name that is required for this set, for example: \"COMMANDERS ASSESSMENT\".",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 61,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,61}"
+								}
+							]
+						},
+						{
+							"name": "FREE TEXT",
+							"cardinality": "M",
+							"description": "Enter in free text of an unlimited number of characters the comments that you wish to send to the other end.",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": -1,
+									"type": "pattern",
+									"value": "(:\/\/)?([A-Za-z0-9\\.,\\(\\)\\?\\-!@#$%\\^&\\*=_\\+\\[\\]\\{\\}\\\\\"';><~\\| \\n\\t:]+(\/|:\/\/)?)*[A-Za-z0-9\\.,\\(\\)\\?\\-!@#$%\\^&\\*=_\\+\\[\\]\\{\\}\\\\\"';><~\\| \\n\\t]",
+									"note": "CLOB"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "PERIOD",
+					"cardinality": "M",
+					"name": "PERIOD OF TIME",
+					"example": "\t\nPERIOD\/081200ZMAY2008\/101159ZMAY2008\/\/\nPERIOD\/041200ZAPR2008\/UFN\/\/\nPERIOD\/221545ZSEP2008\/NLT:011200ZOCT2008\/\/",
+					"description": "Provides the details for the period of time.\n",
+					"documentation": "",
+					"fields": [
+						{
+							"name": "START OF PERIOD",
+							"cardinality": "M",
+							"description": "Specifies the time that activities related to this period are required to start",
+							"ctrls": [
+								{
+									"minLength": 14,
+									"maxLength": 14,
+									"type": "shared",
+									"value": "DTG"
+								}
+							]
+						},
+						{
+							"name": "END OF PERIOD",
+							"cardinality": "M",
+							"description": "Specifies the time that activities related to this period set are required to stop",
+							"ctrls": [
+								{
+									"minLength": 3,
+									"maxLength": 14,
+									"type": "shared",
+									"value": "DTG"
+								},
+								{
+									"minLength": 3,
+									"maxLength": 14,
+									"type": "pattern",
+									"value": "'ASAPFT:'*DTG"
+								},
+								{
+									"minLength": 3,
+									"maxLength": 14,
+									"type": "pattern",
+									"value": "'ASAPNLT:'*DTG"
+								},
+								{
+									"minLength": 3,
+									"maxLength": 14,
+									"type": "pattern",
+									"value": "'NET:'*DTG"
+								},
+								{
+									"minLength": 3,
+									"maxLength": 14,
+									"type": "pattern",
+									"value": "'NLT:'*DTG"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "AREA",
+					"cardinality": "O",
+					"name": "AREA",
+					"example": "AREA\/SALAPARUTA-A45\/NAME:AA\/NAME:BB\/NAME:CC\/\/\nAREA\/-\/4850.3500N-00820.1500W\/4850.4400N-00700.5000W\n\/4730.2500N-00720.7500W\/4730.00N-00800.15W\/\/",
+					"description": "Defines the area which is dangerous to submarine operations.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/AREA%205.0.html#RPTBKMKAREA50",
+					"fields": [
+						{
+							"name": "AREA NAME",
+							"cardinality": "O",
+							"description": "Enter the name of a pre-defined geographical area or the name to be assigned to the area defined by subsequent fields of the set",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 38,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,38}"
+								}
+							]
+						},
+						{
+							"name": "BOUNDARY DEFINITION POINT",
+							"repeatible": true,
+							"cardinality": "C",
+							"description": "Provides the geographic location of a point used in the area boundary definition",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 48,
+									"type": "shared",
+									"value": "LATLONG",
+									"note": "Other POINT types currently not supported"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "SECTOR",
+					"cardinality": "O",
+					"name": "SECTOR DESCRIPTION",
+					"example": "",
+					"description": "Defines the sector which is hazardous for submarine operations.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/SECTOR%205.0.html#RPTBKMKSECTOR50",
+					"fields": [
+					]
+				},
+				{
+					"setId": "CIRC",
+					"cardinality": "O",
+					"name": "CIRCULAR AREA",
+					"example": "",
+					"description": "Defines the circular area which is hazardous for submarine operations.\n",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/CIRC%205.0.html#RPTBKMKCIRC50",
+					"fields": [
+					]
+				},
+				{
+					"setId": "*INTMOV",
+					"repeatible": true,
+					"cardinality": "O",
+					"name": "MOVEMENT OF THE UNIT",
+					"example": "",
+					"description": "Details the intended movement of the unit.",
+					"documentation": "",
+					"fields": [
+					]
+				}
+			]
+		},
+		"INTMOV": {
+			"subBlock": true,
+			"cardinality": "",
+			"name": "<block>",
+			"description": "",
+			"documentation": "",
+			"sets": [
+				{
+					"setId": "PASSAGE",
+					"cardinality": "O",
+					"name": "PASSAGE PLAN",
+					"example": "PASSAGE\/4620.3500N-03125.1600E\/120400ZJUN2006\/\/\nPASSAGE\/4520.3500N-02126.1500E\/121200ZJUN2006\/X1\/\/",
+					"description": "oute. See message notes for an example of how this set is used in conjunction with the MOVAREA set.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/PASSAGE%205.0.html#RPTBKMKPASSAGE50",
+					"fields": [
+						{
+							"name": "GEOGRAPHIC POSITION OF START FOR THE PASSAGE",
+							"cardinality": "M",
+							"description": "Provides the geographic location of start for the passage",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 24,
+									"type": "shared",
+									"value": "LATLONG",
+									"note": "Other POINT types currently not supported"
+								}
+							]
+						},
+						{
+							"name": "DTG AT POSITION",
+							"cardinality": "M",
+							"description": "Enter the Date Time Group at that position",
+							"ctrls": [
+								{
+									"minLength": 14,
+									"maxLength": 14,
+									"type": "shared",
+									"value": "DTG"
+								}
+							]
+						},
+						{
+							"name": "POSITION OR POINT NAME",
+							"cardinality": "O",
+							"description": "Enter an identifying name for the position",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 20,
+									"type": "pattern",
+									"value": "\t\n[- \\.,\\(\\)\\?A-Z0-9]{1,20}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"setId": "MOVAREA",
+					"cardinality": "O",
+					"name": "MOVEMENT AREA",
+					"example": "MOVAREA\/010800ZSEP2006\/031800ZSEP2006\/NIGHT STEAMING BOX\n\/4520.3500N-02126.1500E\/4521.3500N-02126.1500E\/4522.3500N-02126.1500E\n\/4523.3500N-02126.1500E\/\/\n\n",
+					"description": "Specifies an area that a unit will remain in over a defined period. See message notes for an example of how this set is used in conjunction with the PASSAGE set.",
+					"documentation": "BL_15_HTML_FILES\/BL_15_MTF_HTML_by_IRN_SETID_FFIRN\/2_Sets\/MOVAREA%205.0.html#RPTBKMKMOVAREA50",
+					"fields": [
+						{
+							"name": "DTG OF ENTERING AREA",
+							"cardinality": "M",
+							"description": "Enter the Date Time Group when area will be entered",
+							"ctrls": [
+								{
+									"minLength": 14,
+									"maxLength": 14,
+									"type": "shared",
+									"value": "DTG"
+								}
+							]
+						},
+						{
+							"name": "DTG OF LEAVING AREA",
+							"cardinality": "M",
+							"description": "Enter the Date Time Group when unit will be leaving area",
+							"ctrls": [
+								{
+									"minLength": 14,
+									"maxLength": 14,
+									"type": "shared",
+									"value": "DTG"
+								}
+							]
+						},
+						{
+							"name": "AREA NAME",
+							"cardinality": "M",
+							"description": "Enter the name of a pre-defined geographical area or of an area defined by positions given in subsequent fields of the set",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 38,
+									"type": "pattern",
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,38}"
+								}
+							]
+						},
+						{
+							"name": "GEOGRAPHIC POSITION",
+							"repeatible": true,
+							"cardinality": "C",
+							"description": "Provides the geographic position information",
+							"ctrls": [
+								{
+									"minLength": 1,
+									"maxLength": 24,
+									"type": "shared",
+									"value": "LATLONG",
+									"note": "Other POINT types currently not supported"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"commonFields": {
+		"DTG": {
+			"minLength": 14,
+			"maxLength": 14,
+			"type": "custom",
+			"value": " 01..31\/00..23\/00..59\/3letters month\/0001..9999"
+		},
+		"LATLONG": {
+			"minLength": 22,
+			"maxLength": 22,
+			"type": "custom",
+			"value": " PATTERN FOR 4520.3500N-02126.1500E"
+		}
+	}
+}

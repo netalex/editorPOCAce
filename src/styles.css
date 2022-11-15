@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+.styleClassAcp127 {
+  position: absolute;
+  color: yellow;
+}
+
+.styleClassProlog {
+  position: absolute;
+  color: rgb(0, 157, 255);
+}
+
+.styleClassBT {
+  position: absolute;
+  color: rgb(248, 16, 182);
+}
+
+.styleClassSET0 {
+  position: absolute;
+  background: #c0d0f0;
+}
+.styleClassSET1 {
+  position: absolute;
+  background: #f0d0c0;
+}
+
+.styleClassOK {
+  position: absolute;
+  background: #a0ffa0;
+}
+
+.styleClassKO {
+  position: absolute;
+  background: #ff9090;
+}

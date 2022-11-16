@@ -803,7 +803,7 @@
 									"minLength": 1,
 									"maxLength": 20,
 									"type": "pattern",
-									"value": "\t\n[- \\.,\\(\\)\\?A-Z0-9]{1,20}"
+									"value": "[- \\.,\\(\\)\\?A-Z0-9]{1,20}"
 								}
 							]
 						}
@@ -880,14 +880,14 @@
 		"DTG": {
 			"minLength": 14,
 			"maxLength": 14,
-			"type": "custom",
-			"value": " 01..31\/00..23\/00..59\/3letters month\/0001..9999"
+			"type": "pattern",
+			"value": "\\d{2}\\d{2}\\d{2}Z[A-Z]{3}\\d{4}"
 		},
 		"LATLONG": {
-			"minLength": 22,
-			"maxLength": 22,
-			"type": "custom",
-			"value": " PATTERN FOR 4520.3500N-02126.1500E"
+			"minLength": 20,
+			"maxLength": 20,
+			"type": "pattern",
+			"value": "\\d{4}\\.\\d{3}[NS]-\\d{5}\\.\\d{3}[EW]"
 		}
 	}
 }

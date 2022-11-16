@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppSettingsService } from './services/getSyntax'
-import { MessageSyntax, SyntaxConf } from "./dto/dto.e2e";
+import { MessageSyntax, SyntaxConf } from "./interfaces/SyntaxDTO";
 import * as syntax from "./data/APP11_editor.json"
 
 @Injectable({
